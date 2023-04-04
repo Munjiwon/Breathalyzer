@@ -5,6 +5,8 @@ from multiprocessing import current_process
 import self as self
 
 from main import processImpl
+from proc_FaceRecognition import faceProc
+from proc_camera import cameraProc
 from testProc1 import testProc1
 from testProc2 import testProc2
 
@@ -26,9 +28,11 @@ class SystemManager(processImpl):
             test_proc = testProc1('test1')
             test2_proc = testProc2('test2')
 
+
             # add process
             self.addProcess(test_proc)
             self.addProcess(test2_proc)
+
 
             # process aggregation
             # pub_proc.addSubscriber(test_proc, self.dataManager)
@@ -36,8 +40,12 @@ class SystemManager(processImpl):
             # print(pub_proc.msgQueueList)
 
 
-        #else:
-        #     pass
+        else:
+            camera_proc = cameraProc('Camera')
+            face_proc = faceProc('Face')
+
+            self.addProcess(camera_proc)
+            self.addProcess(face_proc)
 
     def doProc(self):
         self.__startChildProcess()
@@ -84,5 +92,5 @@ class SystemManager(processImpl):
             self._print("[key : %15s] [pid : %5d] [status : %5s]"%(key, val.getPID(), val.is_alive()))
 
 if __name__ == '__main__':
-    sm = SystemManager(mp.Manager(), isDebug=True)
+    sm = SystemManager(mp.Manager(), isDebug=False)
     sm.run()
