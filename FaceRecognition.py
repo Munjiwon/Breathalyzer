@@ -2,6 +2,7 @@ import cv2
 import time
 import face_recognition
 
+
 def capture_image(filename, delay=2):
     cap = cv2.VideoCapture(0)
     time.sleep(delay)
