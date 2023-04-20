@@ -1,7 +1,7 @@
-from procImpl import ProcessImpl
+from procImpl import processImpl
 
 
-class testProc(ProcessImpl):
+class testProc(processImpl):
     def __init__(self, name):
         super().__init__(name)
 

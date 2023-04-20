@@ -1,7 +1,7 @@
 from multiprocessing import current_process
 from time import sleep
 
-from main import processImpl
+from procImpl import processImpl
 
 
 class testProc1(processImpl):
@@ -11,10 +11,7 @@ class testProc1(processImpl):
     def doProc(self):
         self._print('Start Process ------- %s' %self.name)
         n = 1
-        while (True):
+        while (n<30):
             print(current_process().pid, n, self.name)
             sleep(1)
             n += 1
-            # if n>10:
-            #     print('finished', current_process().name)
-            #     self.terminate()

@@ -1,4 +1,4 @@
-from main import processImpl
+from procImpl import processImpl
 
 
 class faceProc(processImpl):

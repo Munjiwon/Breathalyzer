@@ -1,7 +1,7 @@
 from multiprocessing import current_process
 from time import sleep
 
-from main import processImpl
+from procImpl import processImpl
 
 
 class nameProc(processImpl): #name은 프로세스 이름넣을것

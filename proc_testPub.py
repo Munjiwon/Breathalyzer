@@ -1,9 +1,9 @@
 import time
 
-from procImpl import ProcessImpl
+from procImpl import processImpl
 
 
-class testPublisher(ProcessImpl):
+class testPublisher(processImpl):
     def __init__(self, name):
         super().__init__(name)
 

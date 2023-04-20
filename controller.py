@@ -4,9 +4,11 @@ from multiprocessing import current_process
 
 import self as self
 
-from main import processImpl
+from procImpl import processImpl
 from proc_FaceRecognition import faceProc
 from proc_camera import cameraProc
+from proc_testProc import testProc
+from proc_testPub import testPublisher
 from testProc1 import testProc1
 from testProc2 import testProc2
 
@@ -28,16 +30,22 @@ class SystemManager(processImpl):
             test_proc = testProc1('test1')
             test2_proc = testProc2('test2')
 
-
             # add process
             self.addProcess(test_proc)
             self.addProcess(test2_proc)
 
-
-            # process aggregation
+            # pub_proc = testPublisher('testPublisher')
+            # subtest_proc = testProc('test1')
+            # subtest2_proc = testProc('test2')
+            #
+            # # process aggregation
             # pub_proc.addSubscriber(test_proc, self.dataManager)
             # pub_proc.addSubscriber(test2_proc, self.dataManager)
             # print(pub_proc.msgQueueList)
+            #
+            # self.addProcess(pub_proc)
+            # self.addProcess(subtest_proc)
+            # self.addProcess(subtest2_proc)
 
 
         else:
@@ -59,7 +67,7 @@ class SystemManager(processImpl):
                 loop_f = False
             self._print('checking Process alive test')
             self.printProcessStatus()
-            #self.__startChildProcess()
+            self.__startChildProcess()
 
 
     def __startChildProcess(self):
@@ -92,5 +100,5 @@ class SystemManager(processImpl):
             self._print("[key : %15s] [pid : %5d] [status : %5s]"%(key, val.getPID(), val.is_alive()))
 
 if __name__ == '__main__':
-    sm = SystemManager(mp.Manager(), isDebug=False)
+    sm = SystemManager(mp.Manager(), isDebug=True)
     sm.run()
